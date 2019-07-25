@@ -55,18 +55,18 @@ function start() {
 
 	var radios = document.getElementsByName('numberOfBalls');
 	for (var num = 0; num < radios.length; num++) {
-    	if (radios[num].checked) {
-    		var tmp = numberOfBalls;
-    		numberOfBalls = num + 1;
-    		if (num + 1 >  tmp) {
-    			// add balls
+		if (radios[num].checked) {
+			var tmp = numberOfBalls;
+			numberOfBalls = num + 1;
+			if (num + 1 >  tmp) {
+				// add balls
 				for (var i =  tmp; i <= num; i++)
 					do {
 						balls[i].x =  getRandomInt(150, 500); 
-    					balls[i].y = getRandomInt(150, 500); 
+						balls[i].y = getRandomInt(150, 500); 
 					} while (overlayBalls(i) != -1);
 			}
-    	}
+		}
 	}
 
 	clearInterval(timer); // stop last timer
