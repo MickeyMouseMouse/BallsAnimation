@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Balls</title>
+    	<link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
+		
+		<script src='animation.js' defer></script>
+		
+		<style>
+		.text1 {
+		font-size: 28;
+		font-weight: bold;
+		}
+		.text2 {
+		font-size: 25;
+		margin-top: -10px;
+		}
+		.text3 {
+		font-size: 22;
+		text-align: center;
+		border: solid 0px;
+		}
+		</style>
+	</head>
+	
+	<body onload='start();'>
+		<p class="text1">Select the number of balls in the animation:</p>
+		<p class="text2">
+			<input name="numberOfBalls" type="radio" onclick="start();" checked>1
+			<input name="numberOfBalls" type="radio" onclick="start();">2
+			<input name="numberOfBalls" type="radio" onclick="start();">3
+			<input name="numberOfBalls" type="radio" onclick="start();">4
+			<input class="text3" id="info" type="text" size="35" readonly>
+		</p>
+		
+		<p><canvas id='field' width="910" height="910"></canvas></p>
+		
+		<p class="text2">Developer: Andrew Jeus; Version: 1.0 (25 July 2019).
+    	<a href="https://github.com/MickeyMouseMouse/BallsAnimation" target="_blank">View code in GitHub</a></p>
+	</body>
+</html>
