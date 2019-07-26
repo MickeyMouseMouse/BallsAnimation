@@ -3,11 +3,11 @@
 		<title>Balls</title>
 		<link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
 
-		<script src='animation.js' defer></script>
+		<script src="animation.js" defer></script>
 		
 		<style>
 		.radioNumber {
-		margin-top: -5px;
+		margin-top: -10px;
 		margin-right: 5px;
 		vertical-align: middle;
 		}
@@ -28,12 +28,12 @@
 		</style>
 	</head>
 	
-	<body onload='start();'>
-		<b style="font-size: 28;">Select the number of balls in the animation:</b>
-		<input class="radioNumber" name="numberOfBalls" type="radio" onclick="start();" checked><font class="text">1</font>
-		<input class="radioNumber" name="numberOfBalls" type="radio" onclick="start();"><font class="text">2</font>
-		<input class="radioNumber" name="numberOfBalls" type="radio" onclick="start();"><font class="text">3</font>
-		<input class="radioNumber" name="numberOfBalls" type="radio" onclick="start();"><font class="text">4</font>
+	<body onload="start();">
+		<font style="font-size:30;font-weight:bold;">Select the number of balls in the animation:</font>
+		<input name="numberOfBalls" class="radioNumber" type="radio" onclick="start();" checked><font class="text">1</font>
+		<input name="numberOfBalls" class="radioNumber" type="radio" onclick="start();"><font class="text">2</font>
+		<input name="numberOfBalls" class="radioNumber" type="radio" onclick="start();"><font class="text">3</font>
+		<input name="numberOfBalls" class="radioNumber" type="radio" onclick="start();"><font class="text">4</font>
 		<!--<input class="inputField" id="info" type="text" size="35" readonly>-->
 		
 		<p><canvas id='field' width="910" height="910"></canvas></p>

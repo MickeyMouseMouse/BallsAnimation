@@ -1,3 +1,5 @@
+"use strict"
+
 class Ball {
 	constructor(x, y, radius, deltaX, deltaY, color) {
 		this.x = x; // center
@@ -9,11 +11,11 @@ class Ball {
 	}
 	
 	collisionsWithEdges(edge1, edge2) {
-		if (this.x + this.radius + this.deltaX >= edge2 || this.x - this.radius + this.deltaX <= edge1)
-			this.deltaX *= -1;
+		if (this.x + this.radius + this.deltaX >= edge2 ||
+			this.x - this.radius + this.deltaX <= edge1) this.deltaX *= -1;
 		
-		if (this.y + this.radius + this.deltaY >= edge2 || this.y - this.radius + this.deltaY <= edge1)
-			this.deltaY *= -1;
+		if (this.y + this.radius + this.deltaY >= edge2 ||
+			this.y - this.radius + this.deltaY <= edge1) this.deltaY *= -1;
 	}
 	
 	nextPosition() {
@@ -27,12 +29,12 @@ class Ball {
 	}
 }
 
-// all balls has the same radius
-var RADIUS = 45;
+const RADIUS = 45; // all balls has the same radius
+const BACKGROUND_COLOR = "LightSeaGreen";
 
 var balls = [];
 balls.push(new Ball(0, 0, RADIUS, 2, 1, "LimeGreen"));
-balls.push(new Ball(0, 0, RADIUS, -1, 2, "SteelBlue"));
+balls.push(new Ball(0, 0, RADIUS, -1, 2, "MidnightBlue"));
 balls.push(new Ball(0, 0, RADIUS, 2.5, -1, "Red"));
 balls.push(new Ball(0, 0, RADIUS, -1.5, -1.5, "Yellow"));
 
@@ -49,28 +51,29 @@ function start() {
 	context.strokeRect(5, 5, 900, 900);
 
 	// draw background
-	context.fillStyle = "#FFA07A";
+	context.fillStyle = BACKGROUND_COLOR;
 	context.fillRect(7, 7, 896, 896);
 	context.closePath();
 
-	var radios = document.getElementsByName('numberOfBalls');
+	var radios = document.getElementsByName("numberOfBalls");
 	for (var num = 0; num < radios.length; num++) {
 		if (radios[num].checked) {
 			var tmp = numberOfBalls;
 			numberOfBalls = num + 1;
 			if (num + 1 >  tmp) {
-				// add balls
-				for (var i =  tmp; i <= num; i++)
+				// add balls to animation
+				for (var i = tmp; i <= num; i++) {
 					do {
-						balls[i].x =  getRandomInt(150, 500); 
+						balls[i].x = getRandomInt(150, 500); 
 						balls[i].y = getRandomInt(150, 500); 
 					} while (overlayBalls(i) != -1);
+				}
 			}
 		}
 	}
 
 	clearInterval(timer); // stop last timer
-	timer = setInterval('animation();', 10); // delay = 10 milliseconds 
+	timer = setInterval("animation();", 10); // delay = 10 milliseconds 
 }
 
 function getRandomInt(min, max) {
@@ -103,19 +106,20 @@ function overlayBalls(num) {
 		if (i == num) continue;
 
 		// distance between centers of the balls < sum their radiuses	
-		if (Math.sqrt(Math.pow(balls[num].x - balls[i].x, 2) + Math.pow(balls[num].y - balls[i].y, 2)) < balls[num].radius + balls[i].radius)
-			return i;
+		if (Math.sqrt(Math.pow(balls[num].x - balls[i].x, 2) +
+			Math.pow(balls[num].y - balls[i].y, 2)) < balls[num].radius + balls[i].radius)
+			return i; // overlay with ball number i
 	}
 	
-	return -1;
+	return -1; // there is no overlay
 }
 
 function eraseBall(num) {
 	context.beginPath();
 	context.arc(balls[num].x, balls[num].y, balls[num].radius, 0, 2 * Math.PI); // (x-center, y-center, radius, startAngle, endAngle [, counterclockwise])
-	context.fillStyle = "#FFA07A";
+	context.fillStyle = BACKGROUND_COLOR;
 	context.fill();
-	context.strokeStyle = "#FFA07A";
+	context.strokeStyle = BACKGROUND_COLOR;
 	context.lineWidth = 3;
 	context.stroke();
 	context.closePath();	
